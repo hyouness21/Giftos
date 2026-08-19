@@ -23,4 +23,4 @@ RUN composer dump-autoload --optimize
 
 EXPOSE 8000
 
-CMD php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan migrate --force --no-interaction; php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+CMD php artisan config:clear; php artisan route:clear; php artisan view:clear; php artisan migrate --force --no-interaction; echo "Starting server on port ${PORT:-8000}"; php -S 0.0.0.0:${PORT:-8000} -t public
