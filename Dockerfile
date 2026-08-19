@@ -24,4 +24,4 @@ RUN npm install && npm run build
 
 EXPOSE 8000
 
-CMD php artisan config:clear; php artisan migrate --force --no-interaction; php -S 0.0.0.0:${PORT:-8000} public/index.php
+CMD php artisan config:clear; php -S 0.0.0.0:${PORT:-8000} public/index.php
