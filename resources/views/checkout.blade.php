@@ -170,7 +170,7 @@
                             <input
                                 id="full_name" type="text"
                                 class="field w-full rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 text-sm text-zinc-900 outline-none transition focus:border-giftos focus:ring-2 focus:ring-giftos/30 sm:rounded-xl sm:px-4 sm:py-3"
-                                placeholder="Hussein Youness" autocomplete="name"
+                                placeholder="Ali Nasser" autocomplete="name"
                             />
                             <p id="full_name-error" class="mt-1 hidden text-xs text-red-600">Full name is required.</p>
                         </div>

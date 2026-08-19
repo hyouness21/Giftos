@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TrackOrderController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -62,6 +63,9 @@ Route::get('/cart', function () {
     $lines = array_values(session('cart', []));
     return view('cart', compact('lines'));
 });
+
+Route::get('/favorites', [FavoriteController::class, 'index']);
+Route::post('/api/favorites/toggle', [FavoriteController::class, 'toggle']);
 
 Route::get('/api/cart', [CartController::class, 'index']);
 Route::post('/api/cart/update', [CartController::class, 'update']);

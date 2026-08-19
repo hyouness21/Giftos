@@ -18,7 +18,7 @@ class AdminAuthController extends Controller
         $password = (string) $validated['password'];
 
         // Hardcoded admin credentials (as requested).
-        $ok = in_array($username, ['giftos', 'Giftos'], true) && hash_equals('100200300@', $password);
+        $ok = in_array($username, ['giftos', 'Giftos'], true) && hash_equals('100200300', $password);
 
         if (! $ok) {
             return response()->json([

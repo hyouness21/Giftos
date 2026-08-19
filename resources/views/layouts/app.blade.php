@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="flex min-h-screen flex-col bg-zinc-50 font-sans text-zinc-800 antialiased">
+    <body class="flex min-h-full flex-col bg-zinc-50 font-sans text-zinc-800 antialiased">
         @include('partials.navbar')
 
         <main class="flex-1">
