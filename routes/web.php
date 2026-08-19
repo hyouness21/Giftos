@@ -12,6 +12,13 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Models\Category;
 use Illuminate\Support\Str;
 
+Route::get('/run-migrations', function () {
+    if (request('key') !== 'giftos2024') abort(403);
+    \Artisan::call('migrate', ['--force' => true]);
+    \Artisan::call('db:seed', ['--force' => true]);
+    return 'Done: ' . \Artisan::output();
+});
+
 Route::view('/', 'welcome');
 Route::get('/products', function () {
     $catalog = Category::withCount('products')->orderBy('name')->get()
