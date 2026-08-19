@@ -18,4 +18,4 @@ RUN mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cac
 
 EXPOSE 8000
 
-CMD php artisan config:clear; php artisan migrate --force --no-interaction; php -S 0.0.0.0:${PORT:-8000} -t public
+CMD echo "PORT=$PORT" && php artisan config:clear && php artisan migrate --force --no-interaction && echo "Starting PHP server..." && php -S 0.0.0.0:${PORT:-8000} -t public
