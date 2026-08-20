@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.2-cli
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
@@ -11,27 +11,17 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN rm -f /etc/apache2/mods-enabled/mpm_event.conf \
-           /etc/apache2/mods-enabled/mpm_event.load \
-           /etc/apache2/mods-enabled/mpm_worker.conf \
-           /etc/apache2/mods-enabled/mpm_worker.load \
-    && a2enmod mpm_prefork rewrite
-
 WORKDIR /var/www/html
 
 COPY . .
 
 RUN mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache \
-    && chmod -R 775 storage bootstrap/cache \
-    && chown -R www-data:www-data storage bootstrap/cache
+    && chmod -R 777 storage bootstrap/cache
 
 RUN composer install --optimize-autoloader --no-dev --no-interaction
 
 RUN npm install && npm run build
 
-RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
-    && echo '<Directory /var/www/html/public>\n    AllowOverride All\n    Require all granted\n</Directory>' >> /etc/apache2/sites-available/000-default.conf
-
 EXPOSE 80
 
-CMD php artisan config:clear; php artisan migrate --force --no-interaction; apache2-foreground
+CMD php artisan config:clear && php artisan migrate --force --no-interaction && php -S 0.0.0.0:${PORT:-80} -t public
