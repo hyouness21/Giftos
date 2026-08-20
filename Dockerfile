@@ -15,7 +15,8 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache \
+RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache \
+           storage/logs bootstrap/cache \
     && chmod -R 777 storage bootstrap/cache
 
 RUN composer install --optimize-autoloader --no-dev --no-interaction
