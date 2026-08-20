@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+        @include('partials.admin-nav')
         <header class="mb-8 flex items-center justify-between gap-4">
             <div>
                 <p class="text-sm font-semibold uppercase tracking-widest text-giftos-dark">Admin</p>

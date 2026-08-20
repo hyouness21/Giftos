@@ -3,6 +3,9 @@
 @section('title', 'Admin Orders — GIFTOS')
 
 @section('content')
+    <div class="mx-auto max-w-6xl px-4 pt-10 sm:px-6 lg:px-8">
+        @include('partials.admin-nav')
+    </div>
     @php
         $statusColors = [
             'new'        => 'bg-blue-50 text-blue-700',
