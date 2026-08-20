@@ -126,6 +126,14 @@
             closeIcon.classList.add('hidden');
         });
     });
+
+    window.addEventListener('scroll', function () {
+        if (!menu.classList.contains('hidden')) {
+            menu.classList.add('hidden');
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        }
+    }, { passive: true });
 })();
 </script>
 @endpush
